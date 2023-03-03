@@ -5,16 +5,29 @@ typedef struct nodo{
     struct nodo *sig;
 }TNodo;
 TNodo *CreaNodo(int Dato);
+void inicializa_lista(TNodo **cab);
 void imprimir_lista(TNodo *cab);
 void libera_lista(TNodo *cab);
 void insertar_al_inicio(TNodo **cab, int dato);
+void insertar_al_final(TNodo **cab, int dato);
 void eliminar_al_inicio(TNodo **cab);
 void eliminar_al_final(TNodo **cab);
 void eliminar_en_cualquier_lugar(TNodo **cab, int x);
 
 int main()
 {
-    printf("Hello world!\n");
+    TNodo *cabecera;
+    int dato;
+    inicializa_lista(&cabecera);
+    printf("Dame el dato: ");
+    scanf("%d", &dato);
+    insertar_al_inicio(&cabecera, dato);
+    for(int i=0;i<2;i++){
+        printf("Dame el dato: ");
+        scanf("%d", &dato);
+        insertar_al_final(&cabecera, dato);
+    }
+    imprimir_lista(cabecera);
     return 0;
 }
 
@@ -27,6 +40,9 @@ TNodo *CreaNodo(int Dato){
     nodo->dato=Dato;
     nodo->sig=NULL;
     return nodo;
+}
+void inicializa_lista(TNodo **cab){
+    *cab=NULL;
 }
 void imprimir_lista(TNodo *cab){
     TNodo *aux=cab;
